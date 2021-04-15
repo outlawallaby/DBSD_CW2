@@ -1,5 +1,4 @@
-﻿USE [USMALL]
-GO
+﻿GO
 set language english;
 GO
 
@@ -8,7 +7,7 @@ CREATE TABLE [dbo].[Product]
     [ProductId] INT NOT NULL IDENTITY,
     [ProductName] NVARCHAR(70) NOT NULL,
     [ProductVendor] NVARCHAR(70) NOT NULL, 
-    [QuantityInStock] SMALLINT(6) NOT NULL,
+    [QuantityInStock] INT NOT NULL,
     [Price] DECIMAL(10,2) NOT NULL,
     [ProductDetailId] INT NOT NULL,
     CONSTRAINT [PK_Product] PRIMARY KEY CLUSTERED ([ProductId])
