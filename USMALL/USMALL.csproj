@@ -131,9 +131,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\USMALLDB.mdf" />
-    <Content Include="App_Data\USMALLDB_log.ldf">
-      <DependentUpon>USMALLDB.mdf</DependentUpon>
+    <Content Include="App_Data\UsmallDB.mdf" />
+    <Content Include="App_Data\UsmallDB_log.ldf">
+      <DependentUpon>UsmallDB.mdf</DependentUpon>
     </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
