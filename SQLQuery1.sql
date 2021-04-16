@@ -91,3 +91,7 @@ ALTER TABLE [dbo].[Order] ADD CONSTRAINT [FK_OrderCustomerId]
 
 GO
 CREATE INDEX [IFK_OrderCustomerId] ON [dbo].[Order] ([CustomerId]);
+
+INSERT INTO [dbo].[Product] ([ProductName],[ProductVendor],[QuantityInStock],[Price],[ProductDetailId]) VALUES (N'Note6 pro',N'Redmi',9,220,1);
+
+INSERT INTO [dbo].[ProductDetail] ([ProductDescription]) VALUES (N'Note6 pro');

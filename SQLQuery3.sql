@@ -91,3 +91,4 @@ ALTER TABLE [dbo].[Order] ADD CONSTRAINT [FK_OrderCustomerId]
 
 GO
 CREATE INDEX [IFK_OrderCustomerId] ON [dbo].[Order] ([CustomerId]);
+
