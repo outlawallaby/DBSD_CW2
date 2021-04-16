@@ -95,9 +95,3 @@ CREATE INDEX [IFK_OrderCustomerId] ON [dbo].[Order] ([CustomerId]);
 INSERT INTO [dbo].[Product] ([ProductName],[ProductVendor],[QuantityInStock],[Price],[ProductDetailId]) VALUES (N'Note6 pro',N'Redmi',9,220,1);
 
 INSERT INTO [dbo].[ProductDetail] ([ProductDescription]) VALUES (N'Note6 pro');
-
-INSERT INTO [dbo].[Employee] ([FirstName], [LastName], [JobTitle],[Department],[ReportsTo],[HireDate],[Address],[City],[Phone],[Email]) VALUES (N'Vosikov',N'Otabek',N'Administrator',N'IT',1,'2021/01/01',N'Qorasuv-1 27-46',N'Tashkent',N'90-966-36-33',N'ovosikov@wiut.students.uz');
-
-INSERT INTO [dbo].[Customer] ([FirstName], [LastName],[BirthDate],[Address],[City],[Phone],[Email],[SupportRepId]) VALUES (N'Vosikov',N'Bobur','2002/10/17',N'Qorasuv-1 27-46',N'Tashkent',N'90-330-36-33',N'vbobur@gmail.com',1);
-
-INSERT INTO [dbo].[Order] ([CustomerId],[OrderDate],[RequiredDate],[ShippedDate],[Status]) VALUES (1,N'2021/04/16',N'2021/04/25',N'2021/05/1',1);
