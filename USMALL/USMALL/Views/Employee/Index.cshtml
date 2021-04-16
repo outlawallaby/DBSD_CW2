@@ -27,8 +27,12 @@
             @Html.DisplayNameFor(model => model.ReportsTo)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.BirthDate)
+            Manager Name
         </th>
+        <th>
+            Photo
+        </th>
+
         <th>
             @Html.DisplayNameFor(model => model.HireDate)
         </th>
@@ -65,7 +69,11 @@
             @Html.DisplayFor(modelItem => item.ReportsTo)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.BirthDate)
+            @Html.DisplayFor(modelItem => item.ReportstoEmployee.FirstName)
+            @Html.DisplayFor(modelItem => item.ReportstoEmployee.LastName)
+        </td>
+        <td>
+            <img src="@Url.Action("ShowPhoto", new { id = item.EmployeeId})" width="50"/>
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.HireDate)

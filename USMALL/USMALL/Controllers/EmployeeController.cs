@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using USMALL.DAL;
+using USMALL.Models;
 
 namespace USMALL.Controllers
 {
@@ -11,12 +14,15 @@ namespace USMALL.Controllers
         // GET: Employee
         public ActionResult Index()
         {
-            return View();
+            var repository = new EmployeeRepository();
+            var employees = repository.GetAll();   
+            return View(employees);
         }
 
         // GET: Employee/Details/5
         public ActionResult Details(int id)
         {
+            
             return View();
         }
 
@@ -28,16 +34,27 @@ namespace USMALL.Controllers
 
         // POST: Employee/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Employee emp, HttpPostedFileBase imageFile)
         {
+            var repository = new EmployeeRepository();
             try
             {
-                // TODO: Add insert logic here
+                if (imageFile?.ContentLength>0)
+                {
+                    using (var stream = new MemoryStream())
+                    {
 
+                    imageFile.InputStream.CopyTo(stream);
+                    emp.Photo = stream.ToArray();
+                    }
+                }
+
+                repository.Insert(emp);
                 return RedirectToAction("Index");
             }
-            catch
+            catch(Exception ex)
             {
+                ModelState.AddModelError("",ex.Message);
                 return View();
             }
         }
@@ -45,21 +62,28 @@ namespace USMALL.Controllers
         // GET: Employee/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var repository = new EmployeeRepository();
+            var emp = repository.GetById(id);
+
+            var supervisors = repository.GetAll();
+
+            ViewBag.SupervisorsList = supervisors;
+            return View(emp);
         }
 
         // POST: Employee/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(Employee emp)
         {
+            var repository = new EmployeeRepository();
             try
             {
-                // TODO: Add update logic here
-
+                repository.Update(emp);
                 return RedirectToAction("Index");
             }
-            catch
+            catch(Exception ex)
             {
+                ModelState.AddModelError("", ex.Message);
                 return View();
             }
         }
@@ -84,6 +108,15 @@ namespace USMALL.Controllers
             {
                 return View();
             }
+        }
+
+        public FileResult ShowPhoto(int id)
+        {
+            var repository = new EmployeeRepository();
+            var emp = repository.GetById(id);
+            if (emp != null && emp.Photo?.Length >0)  
+                return File(emp.Photo, "image/jpeg", emp.LastName + ".jpg");
+            return null;
         }
     }
 }
